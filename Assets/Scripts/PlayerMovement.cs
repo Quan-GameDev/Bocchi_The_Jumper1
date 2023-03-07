@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
         preheight = height;
         height = transform.position.y;
         if (movement)
-            rb.velocity = new Vector2(dirX * 7f, rb.velocity.y);
+            rb.velocity = new Vector2(dirX * 4f, rb.velocity.y);
         if (height != preheight)
         {
             // Debug.Log("height: " + height.ToString());
