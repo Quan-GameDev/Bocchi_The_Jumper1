@@ -20,10 +20,4 @@ public class TerrainController : MonoBehaviour
     {
         
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        player.movement = false;
-        Debug.Log("Triggered");
-    }
 }

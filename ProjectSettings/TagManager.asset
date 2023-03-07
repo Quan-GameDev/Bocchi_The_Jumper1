@@ -38,6 +38,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 1731956825
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Terrian
+    uniqueID: 1417295101
     locked: 0

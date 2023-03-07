@@ -194,7 +194,7 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -2000222235
+  m_SortingLayerID: 1731956825
   m_SortingLayer: -1
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
@@ -11638,16 +11638,30 @@ CompositeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths: []
+  m_ColliderPaths:
+  - m_Collider: {fileID: 1099090634}
+    m_ColliderPaths:
+    - - X: -100000000
+        Y: -40000000
+      - X: 100000000
+        Y: -40000000
+      - X: 100000000
+        Y: -10000000
+      - X: -100000000
+        Y: -10000000
   m_CompositePaths:
-    m_Paths: []
+    m_Paths:
+    - - {x: 9.99997, y: -4}
+      - {x: 9.99997, y: -1}
+      - {x: -10, y: -1.0000293}
+      - {x: -9.99997, y: -4}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
 --- !u!50 &1099090633
@@ -11683,7 +11697,7 @@ TilemapCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
@@ -11726,7 +11740,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1924946049
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -12455,6 +12469,7 @@ GameObject:
   - component: {fileID: 1936882017}
   - component: {fileID: 1936882016}
   - component: {fileID: 1936882020}
+  - component: {fileID: 1936882021}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -12569,7 +12584,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1936882015}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.89, y: 0.74, z: 0}
+  m_LocalPosition: {x: -5.63, y: 0.43, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12588,8 +12603,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28dfcfb7a222ace47b98282d51538092, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpPower: 5
-  movement: 0
+  jumpPower: 10
+  jumpDistance: 5
+--- !u!95 &1936882021
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936882015}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: df3235b73958c1040830d2545f361d94, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1994514642
 GameObject:
   m_ObjectHideFlags: 0
