@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private float timer;
     private float lasttimer;
     private bool holdSpace;
+    [SerializeField] private AudioSource jumbSoundEffect;
     // Start is called before the first frame update
 
 
@@ -79,6 +80,7 @@ public class PlayerMovement : MonoBehaviour
         
         if (Input.GetKeyUp("space") && !isJump)
         {
+            jumbSoundEffect.Play();
             timer = Time.time - timer;
             if (timer<0.5f) timer = 0.5f;
 
