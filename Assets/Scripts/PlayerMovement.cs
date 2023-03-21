@@ -35,7 +35,6 @@ public class PlayerMovement : MonoBehaviour
         MovementState state;
         direction = 1;
         movement = true;
-
         rb = GetComponent<Rigidbody2D>();
         animation = GetComponent<Animator>();
         state = MovementState.idle;
@@ -44,8 +43,7 @@ public class PlayerMovement : MonoBehaviour
         rb.freezeRotation = true;
         isJump = false;
         holdSpace = false;
-
-    
+        
     }
 
     // Update is called once per frame
@@ -75,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown("space") && !isJump){
             timer = Time.time;
             holdSpace = true;
+            movement = false;
         }
         
         if (Input.GetKeyUp("space") && !isJump)
