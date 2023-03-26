@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public float jumpPower;
     public float jumpDistance;
+    public float powerCap;
 
 
     private Rigidbody2D rb;
@@ -22,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private float timer;
     private float lasttimer;
     private bool holdSpace;
+    private int heightCheck;
     [SerializeField] private AudioSource jumbSoundEffect;
     // Start is called before the first frame update
 
@@ -49,20 +51,30 @@ public class PlayerMovement : MonoBehaviour
     
     }
 
+    // public void FixedUpdate(){
+    //     preheight = height;
+    //     height = transform.position.y;
+    //     if (height == preheight)
+    //     {
+    //         Debug.Log("Same height");
+    //         heightCheck++;
+    //     }
+    //     else{
+    //         heightCheck = 0;
+    //     }
+    // }
+
     // Update is called once per frame
 
     public void Update()
     {
         dirX = Input.GetAxis("Horizontal");
-        preheight = height;
-        height = transform.position.y;
+        // Debug.Log(preheight);
+        // Debug.Log(height);
+        // Debug.Log(isJump);
         if (movement)
             rb.velocity = new Vector2(dirX * 4f, rb.velocity.y);
-        if (height != preheight)
-        {
-            // Debug.Log("height: " + height.ToString());
-            // Debug.Log(preheight.ToString());
-        }
+
         if (dirX < 0 && facingRight && !isJump)
         {
             direction = 1;
@@ -76,27 +88,34 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown("space") && !isJump){
             timer = Time.time;
             holdSpace = true;
+            movement = false;
         }
         
         if (Input.GetKeyUp("space") && !isJump)
         {
-            jumbSoundEffect.Play();
-            timer = Time.time - timer;
-            if (timer<0.5f) timer = 0.5f;
+            float releaseTimer = Time.time - timer;
+            if (timer != 0){
+                jumbSoundEffect.Play();
+                Debug.Log(timer.ToString() + " " + releaseTimer.ToString());
+                timer =  releaseTimer;
+                if (timer<0.5f) timer = 0.5f;
 
-            movement = false;
-            isJump = true;
-            holdSpace = false;
+                movement = false;
+                isJump = true;
+                holdSpace = false;
 
-            if (direction == 1)
-            {
-                GetComponent<Rigidbody2D>().velocity = new Vector3(-jumpDistance, jumpPower*timer, 0);
+                if (direction == 1)
+                {
+                    GetComponent<Rigidbody2D>().velocity = new Vector3(-jumpDistance, Mathf.Clamp(jumpPower*timer*timer,0,powerCap), 0);
+                }
+                else
+                {
+                    GetComponent<Rigidbody2D>().velocity = new Vector3(jumpDistance, Mathf.Clamp(jumpPower*timer*timer,0,powerCap), 0);
+                }
+                // Debug.Log(timer);
+                timer = 0;
             }
-            else
-            {
-                GetComponent<Rigidbody2D>().velocity = new Vector3(jumpDistance, jumpPower*timer, 0);
-            }
-            timer = 0;
+
         }
 
         AnimationChecker();
@@ -127,9 +146,9 @@ public class PlayerMovement : MonoBehaviour
             state = MovementState.abouttojump;
         }
         else{
+            // isJump = false;
             state = MovementState.idle;
         }
-        Debug.Log((int)state);
         animation.SetInteger("state",(int)state);
     }
 
